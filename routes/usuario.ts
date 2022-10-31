@@ -4,7 +4,12 @@ const userRouter= Router();
 
 userRouter.get('/prueba',(req:Request,resp:Response)=>{
 
+        resp.json({
 
+            ok:true,
+            mensaje:'Todo funciona'
+
+        });
 
 });
 
