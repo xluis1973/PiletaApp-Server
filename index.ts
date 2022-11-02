@@ -19,6 +19,7 @@ var con = mysql.createConnection({
   database : 'test'
 });
 
+
 // Funcion que nos permite comprobar la conexión a la base de datos.
 // con.connect(function(err) {
 //   if (err) throw err;
