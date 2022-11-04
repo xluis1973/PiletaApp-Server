@@ -1,16 +1,12 @@
-import { Router,Request,Response } from "express";
+import { Router } from "express";
+import { getUsuario, getUsuarios } from "../controllers/usuario.controller";
 
 const userRouter= Router();
 
-userRouter.get('/prueba',(req:Request,resp:Response)=>{
 
-        resp.json({
 
-            ok:true,
-            mensaje:'Todo funciona'
+userRouter.get('/all',getUsuarios);
 
-        });
-
-});
+userRouter.get('/find',getUsuario);
 
 export default userRouter;
