@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
+import bcrcrypt from 'bcrypt';
 import db from '../db/conection';
+import { prototype } from "mysql2/typings/mysql/lib/Connection";
 
 
 const Usuario =db.define('Usuario',{
@@ -18,8 +20,12 @@ const Usuario =db.define('Usuario',{
     },
     estado:{
         type:DataTypes.BOOLEAN
-    }
+    },
+    
 
-});
+},
+);
+ 
+
 
 export default Usuario;

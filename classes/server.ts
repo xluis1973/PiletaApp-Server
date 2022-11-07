@@ -47,6 +47,7 @@ export default class Server{
         console.log("conectado ");
         
        } catch (error:any) {
+        console.log("Error");
         throw new Error(error);
        }
     }
