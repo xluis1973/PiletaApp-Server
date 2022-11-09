@@ -166,6 +166,9 @@ export const login=async (req:Request,resp:Response)=>{
                 msg:`No existe un usuario con ese mail`
             });
         }
+        console.log(body.password);
+        console.log(usuarioExiste.getDataValue("password"));
+        console.log(bcrcrypt.compareSync(body.password,usuarioExiste.getDataValue("password")));
 
         if(bcrcrypt.compareSync(body.password,usuarioExiste.getDataValue("password"))){
             const tokenUser=Token.getJwtToken({

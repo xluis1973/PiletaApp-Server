@@ -11,7 +11,7 @@ export default class Server{
     public app:express.Application;
     public port:number=3000;
     private apiPath={
-        usuarios:'/api/usuarios',
+        usuarios:'/api',
 
     }
 

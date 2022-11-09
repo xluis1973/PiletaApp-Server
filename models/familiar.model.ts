@@ -4,7 +4,11 @@ import db from '../db/conection';
 
 
 
-const Usuario =db.define('Usuario',{
+const Familiar =db.define('Familiar',{
+
+    dni:{
+        type:DataTypes.INTEGER
+    },
 
     apellido: {
         type:DataTypes.STRING
@@ -12,10 +16,16 @@ const Usuario =db.define('Usuario',{
     nombre :{
         type:DataTypes.STRING
     },
-    email:{
+    fechaNacimiento:{
+        type:DataTypes.DATE
+    },
+    parentesco:{
         type:DataTypes.STRING
     },
-    password:{
+    nroAfiliado:{
+        type:DataTypes.INTEGER
+    },
+    foto:{
         type:DataTypes.STRING
     },
     estado:{
@@ -28,4 +38,4 @@ const Usuario =db.define('Usuario',{
  
 
 
-export default Usuario;
+export default Familiar;
