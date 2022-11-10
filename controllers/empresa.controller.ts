@@ -5,8 +5,9 @@ import Empresa from "../models/empresa.model";
 export const getEmpresas=async (req:Request,resp:Response)=>{
 
     const empresas=await Empresa.findAll();
+    console.log("devolviendo");
 
-    resp.json({empresas});
+    resp.json(empresas);
 };
 
 export const getEmpresa=async (req:any,resp:Response)=>{
