@@ -178,10 +178,14 @@ export const login=async (req:Request,resp:Response)=>{
                 email:usuarioExiste.getDataValue("email")
             });
 
-            resp.json(tokenUser);
+            console.log("token generado api",tokenUser);
+            resp.json({
+                ok:true,
+                token:tokenUser});
         }else {
             resp.json({
-                msg:'Contraseña incorrecta'
+                ok:false,
+                
             })
         }
 

@@ -5,6 +5,7 @@ export const verificaToken=(req:any, resp:Response,next:NextFunction)=>{
 
     const userToken=req.get('x-token')||'';
 
+    console.log("llegó ",req.get('x-token'));
     Token.compareToken(userToken).then((decoder:any)=>{
 
         console.log("decoder",decoder);
@@ -24,6 +25,7 @@ export const verificaTokenOtros=(req:any, resp:Response,next:NextFunction)=>{
 
     const userToken=req.get('x-token')||'';
 
+   
     Token.compareToken(userToken).then((decoder:any)=>{
 
         console.log("decoder",decoder);
