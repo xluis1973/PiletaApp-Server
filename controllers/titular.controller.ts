@@ -61,6 +61,21 @@ export const crearTitular=async(req:Request,resp:Response)=>{
             });
         }
 
+        console.log("Previo");
+        var nombreArchivo;
+        if(body.foto!=""){
+            var foto=body.foto;
+            var fs=require("fs");
+             nombreArchivo=""+body.nroAfiliado+""+body.dni+".jpg";
+            fs.writeFile("public/upload/"+nombreArchivo,foto,'base64',(error:any)=>{
+
+                console.log("Error ",error);
+
+            });
+            
+        }
+
+        body.foto="public/upload/"+nombreArchivo,foto;
 
         const titular=Titular.build(body);
         

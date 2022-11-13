@@ -2,6 +2,7 @@ import { Request, response, Response } from "express";
 import Empresa from "../models/empresa.model";
 
 
+
 export const getEmpresas=async (req:Request,resp:Response)=>{
 
     const empresas=await Empresa.findAll();
