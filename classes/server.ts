@@ -4,9 +4,8 @@ import userRouter from '../routes/usuario';
 import fileUpload from 'express-fileupload';
 import cors from 'cors';
 import bodyParser from "body-parser";
-import empresaRouter from '../routes/empresa';
-import titularRouter from '../routes/titular';
-import familiarRouter from '../routes/familiar';
+
+
 
 
 
@@ -37,16 +36,20 @@ export default class Server{
         this.app.use(bodyParser.urlencoded({extended:true,limit:50000000}));
         this.app.use(bodyParser.json({limit:50000000}));
         //Carpeta publica
-        this.app.use("/public/upload",express.static(__dirname+"/public/upload"));
+        //this.app.use("/public/upload",express.static(__dirname+"/public/upload"));
+        //const path = require('path');
+        //this.app.use('/upload', express.static(path.join(__dirname, 'public')))
+        //this.app.use('/upload', express.static(__dirname + '/public'));
+        
+        this.app.use(express.static('public'));
         this.app.use(fileUpload());
     }
 
 
     routes(){
         this.app.use(this.apiPath.usuarios,userRouter);
-        this.app.use(this.apiPath.usuarios,empresaRouter);
-        this.app.use(this.apiPath.usuarios,titularRouter);
-        this.app.use(this.apiPath.usuarios,familiarRouter);
+      
+       
     }
     async dbConnector(){
        try {

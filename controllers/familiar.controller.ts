@@ -1,10 +1,13 @@
 import { Request, response, Response } from "express";
-import Familiar from "../models/titular.model";
+import Familiar from "../models/familiar.model";
+
+
 
 
 export const getFamiliares=async (req:Request,resp:Response)=>{
 
     const familiares=await Familiar.findAll();
+    console.log("Todos ",req.body);
 
     resp.json({familiares});
 };
@@ -17,7 +20,7 @@ export const getFamiliar=async (req:any,resp:Response)=>{
         resp.json(familiar);
     } else {
         resp.status(404).json({
-            msg:`No existe una empresa con el id ${req.body.id}`
+            msg:`No existe un familiar con el id ${req.body.id}`
         });
     }
     
@@ -44,6 +47,7 @@ export const getFamiliarPorAfiliado=async (req:any,resp:Response)=>{
 export const crearFamiliar=async(req:Request,resp:Response)=>{
 
     const {body}=req;
+    console.log("foto familiar ",body.foto);
 
     try{
 
@@ -60,7 +64,27 @@ export const crearFamiliar=async(req:Request,resp:Response)=>{
             });
         }
 
+        console.log("Previo");
+        var nombreArchivo:string="";
+        if(body.foto!=""){
+            var foto=body.foto;
+            var fs=require("fs");
+             nombreArchivo=""+body.nroAfiliado+""+body.dni+".jpg";
+            fs.writeFile("public/upload/"+nombreArchivo,foto,'base64',(err:any)=>{
 
+                if (err)
+                {   console.log("error", err);}
+               else {
+                       console.log("Archivo guardado satisfactoriamente\n");
+                       
+                       
+               }
+
+            });
+            
+        }
+
+        body.foto="public/upload/"+nombreArchivo,foto;
         const familiar=Familiar.build(body);
         
         await familiar.save();

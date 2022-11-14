@@ -1,4 +1,5 @@
 import { Request, response, Response } from "express";
+import path from 'path';
 import Titular from "../models/titular.model";
 
 
@@ -14,7 +15,9 @@ export const getTitular=async (req:any,resp:Response)=>{
     const id=req.body.id;
     const titular=await Titular.findByPk(id);
     if(titular && id){
+
         resp.json(titular);
+        
     } else {
         resp.status(404).json({
             msg:`No existe un titular con el id ${req.body.id}`
@@ -62,14 +65,20 @@ export const crearTitular=async(req:Request,resp:Response)=>{
         }
 
         console.log("Previo");
-        var nombreArchivo;
+        var nombreArchivo:string="";
         if(body.foto!=""){
             var foto=body.foto;
             var fs=require("fs");
              nombreArchivo=""+body.nroAfiliado+""+body.dni+".jpg";
-            fs.writeFile("public/upload/"+nombreArchivo,foto,'base64',(error:any)=>{
+            fs.writeFile("public/upload/"+nombreArchivo,foto,'base64',(err:any)=>{
 
-                console.log("Error ",error);
+                if (err)
+                 {   console.log("error", err);}
+                else {
+                        console.log("Archivo guardado satisfactoriamente\n");
+                        
+                        
+                }
 
             });
             
@@ -84,6 +93,7 @@ export const crearTitular=async(req:Request,resp:Response)=>{
       
 
         resp.json(titular);
+        
 
 
 
@@ -97,4 +107,6 @@ export const crearTitular=async(req:Request,resp:Response)=>{
         });
     }
    
+    
 };
+
