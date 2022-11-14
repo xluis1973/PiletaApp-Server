@@ -1,9 +1,7 @@
 import { Router } from "express";
 import { getUsuario, getUsuarios, crearUsuario, actualizarUsuario, borrarUsuario, login } from '../controllers/usuario.controller';
-import { verificaToken, verificaTokenOtros } from '../middelware/autenticacion';
-import { getEmpresas, getEmpresa, crearEmpresa, getEmpresaPorNro } from '../controllers/empresa.controller';
-import { getTitular, getTitulares, crearTitular, getTitularPorNro } from '../controllers/titular.controller';
-import { getFamiliares, getFamiliar, crearFamiliar, getFamiliarPorAfiliado } from '../controllers/familiar.controller';
+import { verificaToken } from '../middelware/autenticacion';
+
 const userRouter= Router();
 
 //Usuarios
