@@ -26,9 +26,11 @@ export const getTitular=async (req:any,resp:Response)=>{
     
 };
 
-export const getTitularPorNro=async (req:any,resp:Response)=>{
+export const getTitularPorNro=async (req:Request,resp:Response)=>{
 
-    const nro=req.body.nroAfiliado;
+    const nro=req.query.nroAfiliado;
+    console.log("parametros ",req.query);
+  
     const titular=await Titular.findOne({
         where:{
             nroAfiliado:nro
