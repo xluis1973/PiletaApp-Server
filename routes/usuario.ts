@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { crearEmpresa, getEmpresa, getEmpresaPorNro, getEmpresas } from "../controllers/empresa.controller";
-import { crearFamiliar, getFamiliar, getFamiliares, getFamiliarPorAfiliado } from "../controllers/familiar.controller";
+import { crearFamiliar, getFamiliar, getFamiliares, getFamiliarPorAfiliado, actualizarFamiliar } from '../controllers/familiar.controller';
 import { crearTitular, getTitular, getTitulares, getTitularPorNro, actualizarTitular } from '../controllers/titular.controller';
 import { getUsuario, getUsuarios, crearUsuario, actualizarUsuario, borrarUsuario, login } from '../controllers/usuario.controller';
 import { verificaToken } from '../middelware/autenticacion';
@@ -42,6 +42,8 @@ userRouter.get('/familiares/find',verificaToken,getFamiliar);
 userRouter.post('/familiares/create',verificaToken,crearFamiliar);
 
 userRouter.get('/familiares/porAfiliado',verificaToken,getFamiliarPorAfiliado);
+
+userRouter.put('/familiares/update',verificaToken,actualizarFamiliar);
 
 //Empresas
 userRouter.get('/empresas/all',verificaToken,getEmpresas);
