@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { crearEmpresa, getEmpresa, getEmpresaPorNro, getEmpresas } from "../controllers/empresa.controller";
 import { crearFamiliar, getFamiliar, getFamiliares, getFamiliarPorAfiliado } from "../controllers/familiar.controller";
-import { crearTitular, getTitular, getTitulares, getTitularPorNro } from "../controllers/titular.controller";
+import { crearTitular, getTitular, getTitulares, getTitularPorNro, actualizarTitular } from '../controllers/titular.controller';
 import { getUsuario, getUsuarios, crearUsuario, actualizarUsuario, borrarUsuario, login } from '../controllers/usuario.controller';
 import { verificaToken } from '../middelware/autenticacion';
 
@@ -21,6 +21,8 @@ userRouter.delete('/usuarios/delete',verificaToken,borrarUsuario);
 
 userRouter.post('/usuarios/login',login);
 
+//Titulares
+
 userRouter.get('/titulares/all',verificaToken,getTitulares);
 
 userRouter.get('/titulares/find',verificaToken,getTitular);
@@ -28,6 +30,8 @@ userRouter.get('/titulares/find',verificaToken,getTitular);
 userRouter.post('/titulares/create',verificaToken,crearTitular);
 
 userRouter.get('/titulares/porNro',verificaToken,getTitularPorNro);
+
+userRouter.put('/titulares/update',verificaToken,actualizarTitular);
 
 //Familiares
 

@@ -83,10 +83,11 @@ export const crearTitular=async(req:Request,resp:Response)=>{
                 }
 
             });
+          
             
         }
 
-        body.foto="public/upload/"+nombreArchivo,foto;
+        body.foto="/upload/"+nombreArchivo,foto;
 
         const titular=Titular.build(body);
         
@@ -111,4 +112,64 @@ export const crearTitular=async(req:Request,resp:Response)=>{
    
     
 };
+export const actualizarTitular=async(req:Request,resp:Response)=>{
+
+    const {body}=req;
+
+    try{
+
+        
+        console.log("Previo");
+        var nombreArchivo:string="";
+        if(body.foto!=""){
+            var foto=body.foto;
+            var fs=require("fs");
+             nombreArchivo=""+body.nroAfiliado+""+body.dni+".jpg";
+             
+           await fs.writeFile("public/upload/"+nombreArchivo,foto,'base64',(err:any)=>{
+
+                if (err)
+                 {   console.log("error", err);}
+                else {
+                        console.log("Archivo guardado satisfactoriamente\n");
+                        
+                        
+                }
+
+            });
+           
+            
+        }
+
+        body.foto="/upload/"+nombreArchivo,foto;
+
+        const titular=await Titular.update(body,{
+            where: {
+                nroAfiliado: body.nroAfiliado,
+                
+            }});
+        
+        
+     
+
+      
+
+        resp.json(titular);
+        
+
+
+
+    }catch(error){
+
+        console.log(error);
+        resp.status(500).json({
+
+            msg:'Hable con el administrador'
+
+        });
+    }
+   
+    
+};
+
 

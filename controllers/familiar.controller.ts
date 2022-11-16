@@ -28,7 +28,7 @@ export const getFamiliar=async (req:any,resp:Response)=>{
 
 export const getFamiliarPorAfiliado=async (req:any,resp:Response)=>{
 
-    const nro=req.body.nroAfiliado;
+    const nro=req.query.nroAfiliado;
     const familiares= await Familiar.findAll({
         where:{
             nroAfiliado:nro
@@ -84,7 +84,7 @@ export const crearFamiliar=async(req:Request,resp:Response)=>{
             
         }
 
-        body.foto="public/upload/"+nombreArchivo,foto;
+        body.foto="/upload/"+nombreArchivo,foto;
         const familiar=Familiar.build(body);
         
         await familiar.save();
