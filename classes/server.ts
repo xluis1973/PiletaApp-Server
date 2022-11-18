@@ -22,6 +22,7 @@ export default class Server{
     constructor(){
         this.dbConnector();
         this.app=express();
+       
         this.middelware();
         this.routes();
     }
@@ -66,7 +67,15 @@ export default class Server{
 
     start(callback:any) {
      
-        this.app.listen(this.port,callback);
+        //this.app.listen(this.port,callback);
+        var https = require('https');
+        var fs = require('fs');
+        https.createServer({
+            cert: fs.readFileSync('public/upload/geekflare.crt'),
+            key: fs.readFileSync('public/upload/geekflare.key')
+          },this.app).listen(this.port, function(){
+             console.log('Servidor https correindo en el puerto 3000');
+         });
     }
 
 }
