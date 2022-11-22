@@ -71,8 +71,8 @@ export default class Server{
         var https = require('https');
         var fs = require('fs');
         https.createServer({
-            cert: fs.readFileSync('public/upload/geekflare.crt'),
-            key: fs.readFileSync('public/upload/geekflare.key')
+            cert: fs.readFileSync('public/upload/piletasec.crt'),
+            key: fs.readFileSync('public/upload/piletasec.key')
           },this.app).listen(this.port, function(){
              console.log('Servidor https correindo en el puerto 3000');
          });
