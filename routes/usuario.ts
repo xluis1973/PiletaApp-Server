@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { crearEmpresa, getEmpresa, getEmpresaPorNro, getEmpresas } from "../controllers/empresa.controller";
+import { crearEmpresa, getEmpresa, getEmpresaPorNro, getEmpresas, actualizarEmpresa } from '../controllers/empresa.controller';
 import { crearFamiliar, getFamiliar, getFamiliares, getFamiliarPorAfiliado, actualizarFamiliar } from '../controllers/familiar.controller';
 import { crearTitular, getTitular, getTitulares, getTitularPorNro, actualizarTitular } from '../controllers/titular.controller';
 import { getUsuario, getUsuarios, crearUsuario, actualizarUsuario, borrarUsuario, login } from '../controllers/usuario.controller';
@@ -52,6 +52,8 @@ userRouter.get('/empresas/find',verificaToken,getEmpresa);
 
 userRouter.post('/empresas/create',verificaToken,crearEmpresa);
 
-userRouter.post('/empresas/porNro',verificaToken,getEmpresaPorNro);
+userRouter.put('/empresas/update',verificaToken,actualizarEmpresa);
+
+userRouter.get('/empresas/porNro',verificaToken,getEmpresaPorNro);
 
 export default userRouter;

@@ -11,7 +11,8 @@ const Familiar =db.define('Familiar',{
     parentesco:{type:DataTypes.STRING},
     nroAfiliado:{type:DataTypes.INTEGER},
     foto:{type:DataTypes.STRING},
-    estado:{type:DataTypes.BOOLEAN}
+    estado:{type:DataTypes.BOOLEAN},
+    telefono:{type:DataTypes.STRING}
 
 
 });

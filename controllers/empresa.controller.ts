@@ -27,7 +27,7 @@ export const getEmpresa=async (req:any,resp:Response)=>{
 
 export const getEmpresaPorNro=async (req:any,resp:Response)=>{
 
-    const nro=req.body.nroEmpresa;
+    const nro=req.query.nroEmpresa;
     const empresa= await Empresa.findOne({
         where:{
             nroEmpresa:nro
@@ -82,5 +82,29 @@ export const crearEmpresa=async(req:Request,resp:Response)=>{
 
         });
     }
+   
+};
+
+export const actualizarEmpresa=async(req:Request,resp:Response)=>{
+
+    const {body}=req;
+
+    
+
+
+    const empresa=await Empresa.update(body,{
+        where: {
+            nroEmpresa: body.nroEmpresa,
+            
+        }});
+        
+        
+
+      
+
+        resp.json(empresa);
+
+
+
    
 };

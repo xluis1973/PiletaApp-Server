@@ -149,10 +149,9 @@ export const actualizarTitular=async(req:Request,resp:Response)=>{
                 
             }});
         
-        
-     
+            
 
-      
+            console.log(titular);
 
         resp.json(titular);
         

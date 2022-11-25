@@ -33,6 +33,9 @@ const Titular =db.define('Titular',{
     estado:{
         type:DataTypes.BOOLEAN
     },
+    telefono:{
+        type:DataTypes.STRING
+    }
     
 
 },
