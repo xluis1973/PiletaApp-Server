@@ -1,5 +1,6 @@
 import { Request, response, Response } from "express";
 import Familiar from "../models/familiar.model";
+import { Op } from "sequelize";
 
 
 
@@ -156,5 +157,39 @@ export const actualizarFamiliar=async(req:Request,resp:Response)=>{
 
         });
     }
+   
+};
+
+export const borrarFamiliarPorNro=async (req:Request,resp:Response)=>{
+
+    const nro=req.query.nroAfiliado;
+    const doc=req.query.dni;
+    console.log("parametros ",req.query);
+  
+  
+           
+
+        const familia= await Familiar.destroy({
+            where:{
+                [Op.and]:{
+
+                nroAfiliado:nro,
+                dni:doc 
+                 
+             }}
+            });
+
+            console.log(familia);
+       
+
+        if(familia){
+            resp.json(familia);
+        }else{
+            resp.status(404).json({
+                msg:`No existe un Titular con ese nro ${req.body.nroAfiliado}`
+            });
+        }
+    
+    
    
 };

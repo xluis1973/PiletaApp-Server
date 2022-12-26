@@ -1,6 +1,9 @@
 import { Request, response, Response } from "express";
 import path from 'path';
-import Titular from "../models/titular.model";
+import Titular from '../models/titular.model';
+import Familiar from "../models/familiar.model";
+import { json } from "body-parser";
+import bodyParser from 'body-parser';
 
 
 export const getTitulares=async (req:Request,resp:Response)=>{
@@ -171,4 +174,35 @@ export const actualizarTitular=async(req:Request,resp:Response)=>{
     
 };
 
+export const borrarTitularPorNro=async (req:Request,resp:Response)=>{
 
+    const nro=req.query.nroAfiliado;
+    console.log("parametros ",req.query);
+  
+  
+           
+
+        const familia= await Familiar.destroy(
+            {where:{
+                nroAfiliado:nro
+            }
+            });
+
+        const titular=    await Titular.destroy( 
+             {where:{
+                nroAfiliado:nro
+            }
+        }
+        );
+
+        if(titular || familia){
+            resp.json(titular);
+        }else{
+            resp.status(404).json({
+                msg:`No existe un Titular con ese nro ${req.body.nroAfiliado}`
+            });
+        }
+    
+    
+   
+};
